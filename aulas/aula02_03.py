@@ -9,6 +9,6 @@ i = 1  # inicializando a variável 'i' com o valor 1
 while i < 11:
     resultado = numero * i
     print(f'{numero} x {i} = {resultado}')
-    i = i + 1
+    i += 1  # i = i + 1
 
 # enquanto a condição estiver sendo satisfeita, execute o bloco.
