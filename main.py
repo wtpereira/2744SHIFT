@@ -15,6 +15,15 @@ menu_autores = """
 0 - Voltar ao menu anterior
 """
 
+menu_categorias = """
+[Categorias] Escolha uma das seguintes opções:
+1 - Listar toda as categorias
+2 - Adicionar nova categoria
+3 - Excluir categoria
+4 - Ver categoria por Id
+0 - Voltar ao menu anterior
+"""
+
 menu_editoras = """
 [Editoras] Escolha uma das seguintes opções:
 1 - Listar todas as editoras
@@ -25,6 +34,7 @@ menu_editoras = """
 """
 
 tabela_autores = []
+tabela_categorias = []
 tabela_editoras = []
 
 while True:
@@ -36,6 +46,49 @@ while True:
     match opcao_principal:
         case '0':
             break  # interrompe o loop do while principal
+        case '1':
+            while True:
+                print(menu_categorias)
+                opcao_categorias = input('Digite a opção: ')
+                match opcao_categorias:
+                    case '0':
+                        break  # interrompe o loop do while categorias
+                    case '1':
+                        if tabela_categorias == []:
+                            print("Nenhuma Categoria cadastrada.")
+                            input("Pressione <ENTER> para continuar.")
+                            continue
+
+                        print('Id | Nome')
+                        for index, categoria in enumerate(tabela_categorias):
+                            print(f"{index} | {categoria['nome']}")
+                    case '2':
+                        nome_categoria = input('Digite o nome da categoria: ')
+                        nova_categoria = {
+                            'nome': nome_categoria
+                        }
+                        tabela_categorias.append(nova_categoria)
+                    case '3':
+                        if tabela_categorias == []:
+                            print("Nenhuma Categoria cadastrada.")
+                            input("Pressione <ENTER> para continuar.")
+                            continue
+
+                        id = int(input('Digite o ID da categoria a ser excluída: '))
+                        tabela_categorias.pop(id)
+                        print('Categoria excluída com sucesso!')
+                    case '4':
+                        if tabela_categorias == []:
+                            print("Nenhuma Categoria cadastrada.")
+                            input("Pressione <ENTER> para continuar.")
+                            continue
+
+                        id = int(input('Digite o ID da categoria para buscar: '))
+                        categoria = tabela_categorias[id]
+                        print('Id | Nome')
+                        print(f"{id} | {categoria['nome']}")
+                    case _:
+                        print('Opção inválida!')
         case '2':
             while True:
                 print(menu_editoras)
