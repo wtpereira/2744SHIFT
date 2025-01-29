@@ -199,7 +199,7 @@ while True:
         case '4':
             while True:
                 print(menu_livros)
-                opcao_livros = input('Digiete a opção: ')
+                opcao_livros = input('Digite a opção: ')
                 match opcao_livros:
                     case '0':
                         break  # interrompe o loop do while livros
@@ -210,7 +210,7 @@ while True:
                             continue
                         print('Id | Título | Ano | Qtde páginas | ISBN | autor | categoria | editora')
                         for index, livro in enumerate(tabela_livros):
-                            print(f"{index} | {livro['titulo']} | {livro['ano']} | {livro['paginas']} | {livro['isbn']} | {livro['autor']} | {livro['categoria']} | {livro['editora']}")
+                            print(f"{index} | {livro['titulo']} | {livro['ano']} | {livro['paginas']} | {livro['isbn']} | {livro['autor']['nome']} | {livro['categoria']['nome']} | {livro['editora']['nome']}")
                     case '2':
                         if tabela_autores == [] or tabela_categorias == [] or tabela_editoras == []:
                             print('Necessário cadastrar pelo menos um autor, uma categoria, e uma editora.')
@@ -221,18 +221,33 @@ while True:
                         ano = input('Digite o ano de publicação: ')
                         paginas = input('Digite a quantidade de páginas: ')
                         isbn = input('Digite o ISBN: ')
-                        autor = input('Digite o Id do autor: ')
-                        categoria = input('Digite o Id da categoria: ')
-                        editora = input('Digete o Id da editora: ')
+
+                        print('Id | Nome | Email')
+                        for index, autor in enumerate(tabela_autores):
+                            print(f'{index} | {autor['nome']} | {autor['email']}')
+
+                        autor_id = int(input('Digite o Id do autor: '))
+
+                        print('Id | Nome')
+                        for index, categoria in enumerate(tabela_categorias):
+                            print(f"{index} | {categoria['nome']}")
+
+                        categoria_id = int(input('Digite o Id da categoria: '))
+
+                        print('Id | Nome')
+                        for index, editora in enumerate(tabela_editoras):
+                            print(f"{index} | {editora['nome']}")
+
+                        editora_id = int(input('Digite o Id da editora: '))
                         novo_livro = {
                             'titulo': titulo,
                             'resumo': resumo,
                             'ano': ano,
                             'paginas': paginas,
                             'isbn': isbn,
-                            'autor': autor,
-                            'categoria': categoria,
-                            'editora': editora
+                            'autor': tabela_autores[autor_id],
+                            'categoria': tabela_categorias[categoria_id],
+                            'editora': tabela_editoras[editora_id]
                         }
                         tabela_livros.append(novo_livro)
                     case '3':
@@ -240,11 +255,20 @@ while True:
                             print('Nenhum livro cadastrado.')
                             input('Pressione <ENTER> para continuar.')
                             continue
+
+                        id = int(input('Digite o ID do livro a ser excluido: '))
+                        tabela_livros.pop(id)
+                        print('Livro excluído com sucesso!')
                     case '4':
                         if tabela_livros == []:
                             print('Nenhum livro cadastrado.')
                             input('Pressione <ENTER> para continuar.')
                             continue
+
+                        id = int(input('Digite o ID do livro para buscar: '))
+                        livro = tabela_livros[id]
+                        print('Id | Título | Ano | Qtde páginas | ISBN | autor | categoria | editora')
+                        print(f"{index} | {livro['titulo']} | {livro['ano']} | {livro['paginas']} | {livro['isbn']} | {livro['autor']['nome']} | {livro['categoria']['nome']} | {livro['editora']['nome']}")
                     case _:
                         print('Opção Inválida!')
         case _:
