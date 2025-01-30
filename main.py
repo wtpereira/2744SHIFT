@@ -54,7 +54,7 @@ def gerencia_categoria():
         opcao_categorias = input('Digite a opção: ')
         match opcao_categorias:
             case '0':
-                return  # encerra a execução dentro da função.
+                return  # encerra a execução desta função e retorna para onde foi chamada.
             case '1':
                 if tabela_categorias == []:
                     print("Nenhuma Categoria cadastrada.")
@@ -111,7 +111,7 @@ def gerencia_editora():
         opcao_editoras = input('Digite a opção: ')
         match opcao_editoras:
             case '0':
-                break  # interrompe o loop do while editoras
+                return  # encerra a execução desta função e retorna para onde foi chamada.
             case '1':
                 if tabela_editoras == []:
                     print("Nenhuma Editora cadastrada.")
@@ -171,7 +171,7 @@ def gerencia_autor():
         opcao_autores = input('Digite a opção: ')
         match opcao_autores:
             case '0':
-                break  # interrompe o loop do while autores
+                return  # encerra a execução desta função e retorna para onde foi chamada.
             case '1':
                 if tabela_autores == []:
                     print("Nenhum Autor cadastrado.")
@@ -233,7 +233,7 @@ def gerencia_livro():
         opcao_livros = input('Digite a opção: ')
         match opcao_livros:
             case '0':
-                break  # interrompe o loop do while livros
+                return  # encerra a execução desta função e retorna para onde foi chamada.
             case '1':
                 if tabela_livros == []:
                     print('Nenhum livro cadastrado.')
@@ -323,7 +323,7 @@ def display_menu_principal():
         opcao_principal = input('Digite a opção: ')
         match opcao_principal:
             case '0':
-                break  # interrompe o loop do while principal
+                return  # encerra a execução desta função e retorna para onde foi chamada.
             case '1':
                 gerencia_categoria()
             case '2':
@@ -335,7 +335,6 @@ def display_menu_principal():
             case _:
                 print('Opção Inválida!')
 
-    print('Programa Encerrado!')
-
 
 display_menu_principal()
+print('Programa Encerrado!')
