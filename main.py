@@ -84,8 +84,13 @@ while True:
                             input("Pressione <ENTER> para continuar.")
                             continue
 
-                        id = int(input('Digite o ID da categoria a ser excluída: '))
-                        tabela_categorias.pop(id)
+                        try:
+                            id = input('Digite o ID da categoria a ser excluída: ')
+                            id = int(id)
+                            tabela_categorias.pop(id)
+                        except:
+                            print(f'Id da categoria "{id}" inválido.')
+
                         print('Categoria excluída com sucesso!')
                     case '4':
                         if tabela_categorias == []:
@@ -93,10 +98,15 @@ while True:
                             input("Pressione <ENTER> para continuar.")
                             continue
 
-                        id = int(input('Digite o ID da categoria para buscar: '))
-                        categoria = tabela_categorias[id]
-                        print('Id | Nome')
-                        print(f"{id} | {categoria['nome']}")
+                        try:
+                            id = input('Digite o ID da categoria a ser excluída: ')
+                            id = int(id)
+                            categoria = tabela_categorias[id]
+                            print('Id | Nome')
+                            print(f"{id} | {categoria['nome']}")
+                        except:
+                            print(f'Id da categoria "{id}" inválido.')
+
                     case _:
                         print('Opção inválida!')
         case '2':
@@ -131,8 +141,13 @@ while True:
                             input("Pressione <ENTER> para continuar.")
                             continue
 
-                        id = int(input('Digite o ID da editora a ser excluída: '))
-                        tabela_editoras.pop(id)
+                        try:
+                            id = input('Digite o ID da editora a ser excluída: ')
+                            id = int(id)
+                            tabela_editoras.pop(id)
+                        except:
+                            print(f'Id da editora "{id}" inválido.')
+
                         print('Editora excluída com sucesso!')
                     case '4':
                         if tabela_editoras == []:
@@ -140,10 +155,16 @@ while True:
                             input("Pressione <ENTER> para continuar.")
                             continue
 
-                        id = int(input('Digite o ID da editora para buscar: '))
-                        editora = tabela_editoras[id]
-                        print('Id | Nome | Endereço | Telefone')
-                        print(f"{id} | {editora['nome']} | {editora['endereco']} | {editora['fone']}")
+                        try:
+                            id = input('Digite o ID da editora a ser excluída: ')
+                            id = int(id)
+                            editora = tabela_editoras[id]
+                            print('Id | Nome | Endereço | Telefone')
+                            print(f"{id} | {editora['nome']} | {editora['endereco']} | {editora['fone']}")
+
+                        except:
+                            print(f'Id da editora "{id}" inválido.')
+
                     case _:  # opção default
                         print('Opção inválida!')
         case '3':
@@ -181,8 +202,13 @@ while True:
                             input("Pressione <ENTER> para continuar.")
                             continue
 
-                        id = int(input('Digite o ID do autor a ser excluido: '))
-                        tabela_autores.pop(id)
+                        try:
+                            id = input('Digite o ID do autor a ser excluido: ')
+                            id = int(id)
+                            tabela_autores.pop(id)
+                        except:
+                            print(f'Id do autor "{id}" inválido.')
+
                         print('Autor excluído com sucesso!')
                     case '4':
                         if tabela_autores == []:
@@ -190,10 +216,15 @@ while True:
                             input("Pressione <ENTER> para continuar.")
                             continue
 
-                        id = int(input('Digite o ID do autor para buscar: '))
-                        autor = tabela_autores[id]
-                        print('Id | Nome | Email | Telefone | Biografia')
-                        print(f'{id} | {autor['nome']} | {autor['email']} | {autor['fone']} | {autor['biografia']}')
+                        try:
+                            id = input('Digite o ID do autor a ser excluido: ')
+                            id = int(id)
+                            autor = tabela_autores[id]
+                            print('Id | Nome | Email | Telefone | Biografia')
+                            print(f'{id} | {autor['nome']} | {autor['email']} | {autor['fone']} | {autor['biografia']}')
+                        except:
+                            print(f'Id do autor "{id}" inválido.')
+
                     case _:
                         print('Opção Inválida!')
         case '4':
@@ -256,8 +287,13 @@ while True:
                             input('Pressione <ENTER> para continuar.')
                             continue
 
-                        id = int(input('Digite o ID do livro a ser excluido: '))
-                        tabela_livros.pop(id)
+                        try:
+                            id = input('Digite o ID do livro a ser excluido: ')
+                            id = int(id)
+                            tabela_livros.pop(id)
+                        except:
+                            print(f'Id do livro "{id}" inválido.')
+
                         print('Livro excluído com sucesso!')
                     case '4':
                         if tabela_livros == []:
@@ -265,10 +301,15 @@ while True:
                             input('Pressione <ENTER> para continuar.')
                             continue
 
-                        id = int(input('Digite o ID do livro para buscar: '))
-                        livro = tabela_livros[id]
-                        print('Id | Título | Ano | Qtde páginas | ISBN | autor | categoria | editora')
-                        print(f"{index} | {livro['titulo']} | {livro['ano']} | {livro['paginas']} | {livro['isbn']} | {livro['autor']['nome']} | {livro['categoria']['nome']} | {livro['editora']['nome']}")
+                        try:
+                            id = input('Digite o ID do livro a ser excluido: ')
+                            id = int(id)
+                            livro = tabela_livros[id]
+                            print('Id | Título | Ano | Qtde páginas | ISBN | autor | categoria | editora')
+                            print(f"{index} | {livro['titulo']} | {livro['ano']} | {livro['paginas']} | {livro['isbn']} | {livro['autor']['nome']} | {livro['categoria']['nome']} | {livro['editora']['nome']}")
+                        except:
+                            print(f'Id do livro "{id}" inválido.')
+
                     case _:
                         print('Opção Inválida!')
         case _:
