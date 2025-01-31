@@ -49,33 +49,30 @@ tabela_livros = []
 
 
 def gerencia_categoria():
-    while True:
-        print(menu_categorias)
-        opcao_categorias = input('Digite a opção: ')
-        match opcao_categorias:
-            case '0':
-                return  # encerra a execução desta função e retorna para onde foi chamada.
-            case '1':
-                if tabela_categorias == []:
-                    print("Nenhuma Categoria cadastrada.")
-                    input("Pressione <ENTER> para continuar.")
-                    continue
-
+    print(menu_categorias)
+    opcao_categorias = input('Digite a opção: ')
+    match opcao_categorias:
+        case '0':
+            return  # encerra a execução desta função e retorna para onde foi chamada.
+        case '1':
+            if tabela_categorias == []:
+                print("Nenhuma Categoria cadastrada.")
+                input("Pressione <ENTER> para continuar.")
+            else:
                 print('Id | Nome')
                 for index, categoria in enumerate(tabela_categorias):
                     print(f"{index} | {categoria['nome']}")
-            case '2':
-                nome_categoria = input('Digite o nome da categoria: ')
-                nova_categoria = {
-                    'nome': nome_categoria
-                }
-                tabela_categorias.append(nova_categoria)
-            case '3':
-                if tabela_categorias == []:
-                    print("Nenhuma Categoria cadastrada.")
-                    input("Pressione <ENTER> para continuar.")
-                    continue
-
+        case '2':
+            nome_categoria = input('Digite o nome da categoria: ')
+            nova_categoria = {
+                'nome': nome_categoria
+            }
+            tabela_categorias.append(nova_categoria)
+        case '3':
+            if tabela_categorias == []:
+                print("Nenhuma Categoria cadastrada.")
+                input("Pressione <ENTER> para continuar.")
+            else:
                 try:
                     id = input('Digite o ID da categoria a ser excluída: ')
                     id = int(id)
@@ -84,12 +81,11 @@ def gerencia_categoria():
                     print(f'Id da categoria "{id}" inválido.')
 
                 print('Categoria excluída com sucesso!')
-            case '4':
-                if tabela_categorias == []:
-                    print("Nenhuma Categoria cadastrada.")
-                    input("Pressione <ENTER> para continuar.")
-                    continue
-
+        case '4':
+            if tabela_categorias == []:
+                print("Nenhuma Categoria cadastrada.")
+                input("Pressione <ENTER> para continuar.")
+            else:
                 try:
                     id = input('Digite o ID da categoria para buscar: ')
                     id = int(id)
@@ -99,44 +95,42 @@ def gerencia_categoria():
                 except:
                     print(f'Id da categoria "{id}" inválido.')
 
-            case _:
-                print('Opção inválida!')
+        case _:
+            print('Opção inválida!')
 
-    print('Fim da Gerencia Categoria.')
+    gerencia_categoria()
+
 
 
 def gerencia_editora():
-    while True:
-        print(menu_editoras)
-        opcao_editoras = input('Digite a opção: ')
-        match opcao_editoras:
-            case '0':
-                return  # encerra a execução desta função e retorna para onde foi chamada.
-            case '1':
-                if tabela_editoras == []:
-                    print("Nenhuma Editora cadastrada.")
-                    input("Pressione <ENTER> para continuar.")
-                    continue
-
+    print(menu_editoras)
+    opcao_editoras = input('Digite a opção: ')
+    match opcao_editoras:
+        case '0':
+            return  # encerra a execução desta função e retorna para onde foi chamada.
+        case '1':
+            if tabela_editoras == []:
+                print("Nenhuma Editora cadastrada.")
+                input("Pressione <ENTER> para continuar.")
+            else:
                 print('Id | Nome | Endereço | Telefone')
                 for index, editora in enumerate(tabela_editoras):
                     print(f"{index} | {editora['nome']} | {editora['endereco']} | {editora['fone']}")
-            case '2':
-                nome_editora = input('Digite o nome da editora: ')
-                endereco_editora = input('Digite o endereço da editora: ')
-                fone_editora = input('Digite o telefone da editora: ')
-                nova_editora = {}
-                nova_editora['nome'] = nome_editora
-                nova_editora['endereco'] = endereco_editora
-                nova_editora['fone'] = fone_editora
-                tabela_editoras.append(nova_editora)
-                print('Editora adicionada com sucesso!')
-            case '3':
-                if tabela_editoras == []:
-                    print("Nenhuma Editora cadastrada.")
-                    input("Pressione <ENTER> para continuar.")
-                    continue
-
+        case '2':
+            nome_editora = input('Digite o nome da editora: ')
+            endereco_editora = input('Digite o endereço da editora: ')
+            fone_editora = input('Digite o telefone da editora: ')
+            nova_editora = {}
+            nova_editora['nome'] = nome_editora
+            nova_editora['endereco'] = endereco_editora
+            nova_editora['fone'] = fone_editora
+            tabela_editoras.append(nova_editora)
+            print('Editora adicionada com sucesso!')
+        case '3':
+            if tabela_editoras == []:
+                print("Nenhuma Editora cadastrada.")
+                input("Pressione <ENTER> para continuar.")
+            else:
                 try:
                     id = input('Digite o ID da editora a ser excluída: ')
                     id = int(id)
@@ -145,12 +139,11 @@ def gerencia_editora():
                     print(f'Id da editora "{id}" inválido.')
 
                 print('Editora excluída com sucesso!')
-            case '4':
-                if tabela_editoras == []:
-                    print("Nenhuma Editora cadastrada.")
-                    input("Pressione <ENTER> para continuar.")
-                    continue
-
+        case '4':
+            if tabela_editoras == []:
+                print("Nenhuma Editora cadastrada.")
+                input("Pressione <ENTER> para continuar.")
+            else:
                 try:
                     id = input('Digite o ID da editora para buscar: ')
                     id = int(id)
@@ -161,45 +154,44 @@ def gerencia_editora():
                 except:
                     print(f'Id da editora "{id}" inválido.')
 
-            case _:  # opção default
-                print('Opção inválida!')
+        case _:  # opção default
+            print('Opção inválida!')
+
+    gerencia_editora()
 
 
 def gerencia_autor():
-    while True:
-        print(menu_autores)
-        opcao_autores = input('Digite a opção: ')
-        match opcao_autores:
-            case '0':
-                return  # encerra a execução desta função e retorna para onde foi chamada.
-            case '1':
-                if tabela_autores == []:
-                    print("Nenhum Autor cadastrado.")
-                    input("Pressione <ENTER> para continuar.")
-                    continue
-
+    print(menu_autores)
+    opcao_autores = input('Digite a opção: ')
+    match opcao_autores:
+        case '0':
+            return  # encerra a execução desta função e retorna para onde foi chamada.
+        case '1':
+            if tabela_autores == []:
+                print("Nenhum Autor cadastrado.")
+                input("Pressione <ENTER> para continuar.")
+            else:
                 print('Id | Nome | Email | Telefone | Biografia')
                 for index, autor in enumerate(tabela_autores):
                     print(f'{index} | {autor['nome']} | {autor['email']} | {autor['fone']} | {autor['biografia']}')
-            case '2':
-                nome_autor = input('Digite o nome do autor: ')
-                email_autor = input('Digite o email do autor: ')
-                fone_autor = input('Digite o telefone do autor: ')
-                bio_autor = input('Digite a biografia do autor: ')
-                novo_autor = {
-                    'nome': nome_autor,
-                    'email': email_autor,
-                    'fone': fone_autor,
-                    'biografia': bio_autor
-                }
-                tabela_autores.append(novo_autor)
-                print('Autor adicionado com sucesso!')
-            case '3':
-                if tabela_autores == []:
-                    print("Nenhum Autor cadastrado.")
-                    input("Pressione <ENTER> para continuar.")
-                    continue
-
+        case '2':
+            nome_autor = input('Digite o nome do autor: ')
+            email_autor = input('Digite o email do autor: ')
+            fone_autor = input('Digite o telefone do autor: ')
+            bio_autor = input('Digite a biografia do autor: ')
+            novo_autor = {
+                'nome': nome_autor,
+                'email': email_autor,
+                'fone': fone_autor,
+                'biografia': bio_autor
+            }
+            tabela_autores.append(novo_autor)
+            print('Autor adicionado com sucesso!')
+        case '3':
+            if tabela_autores == []:
+                print("Nenhum Autor cadastrado.")
+                input("Pressione <ENTER> para continuar.")
+            else:
                 try:
                     id = input('Digite o ID do autor a ser excluido: ')
                     id = int(id)
@@ -208,12 +200,11 @@ def gerencia_autor():
                     print(f'Id do autor "{id}" inválido.')
 
                 print('Autor excluído com sucesso!')
-            case '4':
-                if tabela_autores == []:
-                    print("Nenhum Autor cadastrado.")
-                    input("Pressione <ENTER> para continuar.")
-                    continue
-
+        case '4':
+            if tabela_autores == []:
+                print("Nenhum Autor cadastrado.")
+                input("Pressione <ENTER> para continuar.")
+            else:
                 try:
                     id = input('Digite o ID do autor a ser excluido: ')
                     id = int(id)
@@ -223,30 +214,30 @@ def gerencia_autor():
                 except:
                     print(f'Id do autor "{id}" inválido.')
 
-            case _:
-                print('Opção Inválida!')
+        case _:
+            print('Opção Inválida!')
+
+    gerencia_autor()
 
 
 def gerencia_livro():
-    while True:
-        print(menu_livros)
-        opcao_livros = input('Digite a opção: ')
-        match opcao_livros:
-            case '0':
-                return  # encerra a execução desta função e retorna para onde foi chamada.
-            case '1':
-                if tabela_livros == []:
-                    print('Nenhum livro cadastrado.')
-                    input('Pressione <ENTER> para continuar.')
-                    continue
+    print(menu_livros)
+    opcao_livros = input('Digite a opção: ')
+    match opcao_livros:
+        case '0':
+            return  # encerra a execução desta função e retorna para onde foi chamada.
+        case '1':
+            if tabela_livros == []:
+                print('Nenhum livro cadastrado.')
+                input('Pressione <ENTER> para continuar.')
+            else:
                 print('Id | Título | Ano | Qtde páginas | ISBN | autor | categoria | editora')
                 for index, livro in enumerate(tabela_livros):
                     print(f"{index} | {livro['titulo']} | {livro['ano']} | {livro['paginas']} | {livro['isbn']} | {livro['autor']['nome']} | {livro['categoria']['nome']} | {livro['editora']['nome']}")
-            case '2':
-                if tabela_autores == [] or tabela_categorias == [] or tabela_editoras == []:
-                    print('Necessário cadastrar pelo menos um autor, uma categoria, e uma editora.')
-                    continue
-
+        case '2':
+            if tabela_autores == [] or tabela_categorias == [] or tabela_editoras == []:
+                print('Necessário cadastrar pelo menos um autor, uma categoria, e uma editora.')
+            else:
                 titulo = input('Digite o título do livro: ')
                 resumo = input('Digite o resumo do livro: ')
                 ano = input('Digite o ano de publicação: ')
@@ -281,12 +272,12 @@ def gerencia_livro():
                     'editora': tabela_editoras[editora_id]
                 }
                 tabela_livros.append(novo_livro)
-            case '3':
-                if tabela_livros == []:
-                    print('Nenhum livro cadastrado.')
-                    input('Pressione <ENTER> para continuar.')
-                    continue
-
+                print('Livro adicionado com sucesso!')
+        case '3':
+            if tabela_livros == []:
+                print('Nenhum livro cadastrado.')
+                input('Pressione <ENTER> para continuar.')
+            else:
                 try:
                     id = input('Digite o ID do livro a ser excluido: ')
                     id = int(id)
@@ -295,12 +286,11 @@ def gerencia_livro():
                     print(f'Id do livro "{id}" inválido.')
 
                 print('Livro excluído com sucesso!')
-            case '4':
-                if tabela_livros == []:
-                    print('Nenhum livro cadastrado.')
-                    input('Pressione <ENTER> para continuar.')
-                    continue
-
+        case '4':
+            if tabela_livros == []:
+                print('Nenhum livro cadastrado.')
+                input('Pressione <ENTER> para continuar.')
+            else:
                 try:
                     id = input('Digite o ID do livro a ser excluido: ')
                     id = int(id)
@@ -310,8 +300,10 @@ def gerencia_livro():
                 except:
                     print(f'Id do livro "{id}" inválido.')
 
-            case _:
-                print('Opção Inválida!')
+        case _:
+            print('Opção Inválida!')
+
+    gerencia_livro()
 
 
 def display_menu_principal():
