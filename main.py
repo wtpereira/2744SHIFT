@@ -12,6 +12,7 @@ menu_autores = """
 2 - Adicionar novo autor
 3 - Excluir autor
 4 - Ver autor por Id
+5 - Editar autor
 0 - Voltar ao menu anterior
 """
 
@@ -46,6 +47,14 @@ tabela_autores = []
 tabela_categorias = []
 tabela_editoras = []
 tabela_livros = []
+
+
+def valida_email(email: str) -> bool:
+    email = email.lower()
+    if email.find('@') >=0 and email.endswith('.com'):
+        return True
+
+    return False
 
 
 def gerencia_categoria():
@@ -177,6 +186,10 @@ def gerencia_autor():
         case '2':
             nome_autor = input('Digite o nome do autor: ')
             email_autor = input('Digite o email do autor: ')
+            while not valida_email(email_autor):
+                print('E-mail inválido! Tente novamente.')
+                email_autor = input('Digite o email do autor: ')
+
             fone_autor = input('Digite o telefone do autor: ')
             bio_autor = input('Digite a biografia do autor: ')
             novo_autor = {
@@ -214,6 +227,25 @@ def gerencia_autor():
                 except:
                     print(f'Id do autor "{id}" inválido.')
 
+        case '5':
+            if tabela_autores == []:
+                print("Nenhum Autor cadastrado.")
+                input("Pressione <ENTER> para continuar.")
+            else:
+                id = int(input('Digite o ID do autor a ser editado: '))
+                autor = tabela_autores[id]
+                nome_autor = input(f"Digite o novo nome do autor ({autor['nome']}): ")
+                email_autor = input(f"Digite o email do autor: ({autor['email']}): ")
+                fone_autor = input(f"Digite o telefone do autor: ({autor['fone']}): ")
+                bio_autor = input(f"Digite a biografia do autor: ({autor['biografia']}): ")
+                novo_autor = {
+                    'nome': nome_autor,
+                    'email': email_autor,
+                    # 'fone': fone_autor,
+                    # 'biografia': bio_autor
+                }
+                tabela_autores[id] = novo_autor
+                print('Autor editado com sucesso!')
         case _:
             print('Opção Inválida!')
 
