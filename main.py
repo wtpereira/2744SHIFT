@@ -1,3 +1,5 @@
+from service.autor_service import AutorService
+
 menu_principal = """[Menu Principal] Escolha uma das seguintes opções:
 1 - Categorias
 2 - Editoras
@@ -6,15 +8,6 @@ menu_principal = """[Menu Principal] Escolha uma das seguintes opções:
 0 - Sair do programa
 """
 
-menu_autores = """
-[Autores] Escolha uma das seguintes opções:
-1 - Listar todos os autores
-2 - Adicionar novo autor
-3 - Excluir autor
-4 - Ver autor por Id
-5 - Editar autor
-0 - Voltar ao menu anterior
-"""
 
 menu_categorias = """
 [Categorias] Escolha uma das seguintes opções:
@@ -43,76 +36,15 @@ menu_livros = """
 0 - Voltar ao menu anterior
 """
 
-tabela_autores = []
+autor_service = AutorService()
+
 tabela_categorias = []
 tabela_editoras = []
 tabela_livros = []
 
 
-def valida_email(email: str) -> bool:
-    email = email.lower()
-    if email.find('@') >=0 and email.endswith('.com'):
-        return True
-
-    return False
 
 
-
-class Autor:
-    id_autor = 1  # atributo de classe
-
-    __slots__ = ['__id', '__nome', '__email', '__fone', '__biografia']
-    def __init__(self, nome: str, fone: str=None, biografia: str=None):  # construtor
-        self.id = Autor.id_autor
-        self.nome = nome
-        self.__email = None
-        self.fone = fone
-        self.biografia = biografia
-
-    @property
-    def id(self):
-        return self.__id
-
-    @id.setter
-    def id(self, id):
-        self.__id = id
-        Autor.id_autor += 1
-
-    @property
-    def nome(self):
-        return self.__nome
-
-    @nome.setter
-    def nome(self, nome: str):
-        self.__nome = nome.title()
-
-    @property
-    def email(self):  # getter
-        return self.__email
-
-    @email.setter
-    def email(self, em: str):  # setter
-        if valida_email(em):
-            self.__email = em.lower()
-            return
-        ex = Exception('E-mail inválido!')
-        raise ex
-
-    @property
-    def fone(self):
-        return self.__fone
-
-    @fone.setter
-    def fone(self, fone):
-        self.__fone = fone
-
-    @property
-    def biografia(self):
-        return self.__biografia
-
-    @biografia.setter
-    def biografia(self, biografia):
-        self.__biografia = biografia
 
 
 def gerencia_categoria():
@@ -227,101 +159,7 @@ def gerencia_editora():
     gerencia_editora()
 
 
-def gerencia_autor():
-    print(menu_autores)
-    opcao_autores = input('Digite a opção: ')
-    match opcao_autores:
-        case '0':
-            return  # encerra a execução desta função e retorna para onde foi chamada.
-        case '1':
-            if tabela_autores == []:
-                print("Nenhum Autor cadastrado.")
-                input("Pressione <ENTER> para continuar.")
-            else:
-                print('Id | Nome | Email | Telefone | Biografia')
-                for index, autor in enumerate(tabela_autores):
-                    print(f'{autor.id} | {autor.nome} | {autor.email} | {autor.fone} | {autor.biografia}')
-        case '2':
-            nome_autor = input('Digite o nome do autor: ')
-            # while not valida_email(email_autor):
-            #     print('E-mail inválido! Tente novamente.')
-            #     email_autor = input('Digite o email do autor: ')
-            fone_autor = input('Digite o telefone do autor: ')
-            bio_autor = input('Digite a biografia do autor: ')
-            novo_autor = Autor(nome_autor, fone_autor, bio_autor)
-            while True:
-                try:
-                    email_autor = input('Digite o email do autor: ')
-                    novo_autor.email = email_autor
-                except Exception as ex:
-                    print(ex)
-                else:
-                    break
 
-            tabela_autores.append(novo_autor)
-            print('Autor adicionado com sucesso!')
-        case '3':
-            if tabela_autores == []:
-                print("Nenhum Autor cadastrado.")
-                input("Pressione <ENTER> para continuar.")
-            else:
-                try:
-                    id = int(input('Digite o ID do autor a ser excluido: '))
-                    for index, autor in enumerate(tabela_autores):
-                        if autor.id == id:
-                            break
-
-                    tabela_autores.pop(index)
-                except:
-                    print(f'Id do autor "{id}" inválido.')
-                else:
-                    print('Autor excluído com sucesso!')
-        case '4':
-            if tabela_autores == []:
-                print("Nenhum Autor cadastrado.")
-                input("Pressione <ENTER> para continuar.")
-            else:
-                try:
-                    id = int(input('Digite o ID do autor a ser buscado: '))
-                    for autor in tabela_autores:
-                        if autor.id == id:
-                            break
-
-                    print('Id | Nome | Email | Telefone | Biografia')
-                    print(f'{autor.id} | {autor.nome} | {autor.email} | {autor.fone} | {autor.biografia}')
-                except:
-                    print(f'Id do autor "{id}" inválido.')
-
-        case '5':
-            if tabela_autores == []:
-                print("Nenhum Autor cadastrado.")
-                input("Pressione <ENTER> para continuar.")
-            else:
-                id = int(input('Digite o ID do autor a ser editado: '))
-                for index, autor in enumerate(tabela_autores):
-                    if autor.id == id:
-                        break
-
-                nome_autor = input(f"Digite o novo nome do autor ({autor.nome}): ")
-                fone_autor = input(f"Digite o telefone do autor: ({autor.fone}): ")
-                bio_autor = input(f"Digite a biografia do autor: ({autor.biografia}): ")
-                novo_autor = Autor(nome_autor, fone_autor, bio_autor)
-                while True:
-                    try:
-                        email_autor = input(f"Digite o email do autor: ({autor.email}): ")
-                        novo_autor.email = email_autor
-                    except Exception as ex:
-                        print(ex)
-                    else:
-                        break
-
-
-                tabela_autores[index] = novo_autor
-                print('Autor editado com sucesso!')
-        case _:
-            print('Opção Inválida!')
-
-    gerencia_autor()
 
 
 def gerencia_livro():
@@ -339,7 +177,7 @@ def gerencia_livro():
                 for index, livro in enumerate(tabela_livros):
                     print(f"{index} | {livro['titulo']} | {livro['ano']} | {livro['paginas']} | {livro['isbn']} | {livro['autor']['nome']} | {livro['categoria']['nome']} | {livro['editora']['nome']}")
         case '2':
-            if tabela_autores == [] or tabela_categorias == [] or tabela_editoras == []:
+            if AutorService.tabela_autores == [] or tabela_categorias == [] or tabela_editoras == []:
                 print('Necessário cadastrar pelo menos um autor, uma categoria, e uma editora.')
             else:
                 titulo = input('Digite o título do livro: ')
@@ -349,7 +187,7 @@ def gerencia_livro():
                 isbn = input('Digite o ISBN: ')
 
                 print('Id | Nome | Email')
-                for index, autor in enumerate(tabela_autores):
+                for index, autor in enumerate(AutorService.tabela_autores):
                     print(f'{index} | {autor['nome']} | {autor['email']}')
 
                 autor_id = int(input('Digite o Id do autor: '))
@@ -371,7 +209,7 @@ def gerencia_livro():
                     'ano': ano,
                     'paginas': paginas,
                     'isbn': isbn,
-                    'autor': tabela_autores[autor_id],
+                    'autor': AutorService.tabela_autores[autor_id],
                     'categoria': tabela_categorias[categoria_id],
                     'editora': tabela_editoras[editora_id]
                 }
@@ -425,7 +263,7 @@ def display_menu_principal():
             case '2':
                 gerencia_editora()
             case '3':
-                gerencia_autor()
+                autor_service.menu()
             case '4':
                 gerencia_livro()
             case _:
