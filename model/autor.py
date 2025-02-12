@@ -1,12 +1,13 @@
+import itertools
 from model.utils import valida_email
 
 
 class Autor:
-    id_autor = 1  # atributo de classe
-
+    id_autor = itertools.count(start=1)  # atributo de classe
     __slots__ = ['__id', '__nome', '__email', '__fone', '__biografia']
+
     def __init__(self, nome: str, fone: str=None, biografia: str=None):  # construtor
-        self.id = Autor.id_autor
+        self.id = next(Autor.id_autor)
         self.nome = nome
         self.__email = None
         self.fone = fone
@@ -25,7 +26,6 @@ class Autor:
     @id.setter
     def id(self, id):
         self.__id = id
-        Autor.id_autor += 1
 
     @property
     def nome(self):

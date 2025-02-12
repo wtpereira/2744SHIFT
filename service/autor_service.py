@@ -76,15 +76,16 @@ class AutorService:
         if AutorService.autor_dao.empty():
             print("Nenhum Autor cadastrado.")
             input("Pressione <ENTER> para continuar.")
-        else:
-            try:
-                id = int(input('Digite o ID do autor a ser excluido: '))
-                if AutorService.autor_dao.remover(id):
-                    print('Autor excluído com sucesso!')
-                else:
-                    print(f'Id "{id}" do autor inválido.')
-            except Exception as ex:
-                print(f'Erro ao tentar excluir autor: {ex}')
+            return
+
+        try:
+            id = int(input('Digite o ID do autor a ser excluido: '))
+            if AutorService.autor_dao.remover(id):
+                print('Autor excluído com sucesso!')
+            else:
+                print(f'Id "{id}" do autor inválido.')
+        except Exception as ex:
+            print(f'Erro ao tentar excluir autor: {ex}')
 
 
     def mostrar_por_id(self):
